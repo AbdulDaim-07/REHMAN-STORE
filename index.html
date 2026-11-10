@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rehman Store | Hardware & Sanitary</title>
+<style>
+:root{--dark:#242424;--gold:#d5ad55;--light:#f3f3f3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#eee;color:#333}
+button{cursor:pointer;font-family:inherit}
+.hidden{display:none!important}
+header{background:var(--dark);color:white;padding:17px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:4px solid var(--gold)}
+.logo h1{color:var(--gold);font-size:27px}
+.logo p{font-size:12px;letter-spacing:2px;margin-top:5px}
+.header-right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.header-right button{background:var(--gold);border:0;padding:10px 14px;border-radius:6px;font-weight:bold;color:#222}
+nav{background:#414141;display:flex;justify-content:center;flex-wrap:wrap;padding:8px;gap:4px}
+nav button{border:0;background:transparent;color:white;padding:10px 11px;border-radius:5px;font-size:13px}
+nav button:hover,nav button.active{background:var(--gold);color:#222}
+.page{display:none;min-height:75vh;padding:42px 6%;animation:fade .3s}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.page-title{text-align:center;font-size:30px;color:#292929;margin-bottom:10px}
+.page-subtitle{text-align:center;color:#777;margin-bottom:28px}
+.home-hero{min-height:490px;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 15% 15%,#777 0,transparent 28%),radial-gradient(circle at 90% 85%,#66502b 0,transparent 30%),linear-gradient(135deg,#171717,#373737 55%,#202020);display:flex;align-items:center;justify-content:center;padding:28px;position:relative}
+.home-content{max-width:760px;width:100%;text-align:center;background:#ffffff0d;border:1px solid #d5ad5580;border-radius:20px;padding:45px 30px;backdrop-filter:blur(5px);box-shadow:0 15px 40px #0005}
+.home-tag{display:inline-block;background:var(--gold);color:#222;padding:8px 18px;border-radius:30px;font-weight:bold;font-size:13px;letter-spacing:1px;margin-bottom:20px}
+.home-content h1{color:white;font-size:clamp(32px,6vw,55px);line-height:1.15;margin-bottom:14px}
+.home-content h1 span{color:var(--gold)}
+.home-content h2{color:#eee;font-size:19px;font-weight:normal;letter-spacing:2px;margin-bottom:20px}
+.home-content p{color:#ddd;font-size:16px;line-height:1.8;max-width:620px;margin:auto}
+.home-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+.home-actions button{padding:13px 24px;border-radius:7px;font-weight:bold}
+.main-btn{border:0;background:var(--gold);color:#222;padding:12px 22px;border-radius:7px;font-weight:bold}
+.main-btn:hover{background:#bd963e}
+.outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.home-features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.home-feature{background:#ffffff12;border-radius:10px;padding:14px;color:white;font-size:13px}
+.home-feature strong{display:block;color:var(--gold);font-size:17px;margin-bottom:5px}
+.about-container{max-width:850px;margin:30px auto}
+.about-box{background:white;text-align:center;padding:40px 30px;border:2px solid var(--gold);border-radius:16px;box-shadow:0 7px 22px #0002}
+.about-box h2{color:#a9822f;font-size:29px;margin-bottom:18px}
+.about-box p{font-size:16px;line-height:1.9;color:#555;margin:12px 0}
+.since{display:inline-block;background:#292929;color:var(--gold);padding:12px 25px;border-radius:30px;font-weight:bold;margin-top:12px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;max-width:1100px;margin:auto}
+.product-card{background:white;text-align:center;padding:15px;border-radius:12px;border-bottom:3px solid var(--gold);box-shadow:0 4px 15px #0002;transition:.25s}
+.product-card:hover{transform:translateY(-5px)}
+.product-card img{width:100%;height:240px;object-fit:contain;background:transparent;border-radius:8px;padding:0}
+.product-card h3{margin:12px 0 8px;color:#292929;font-size:17px}
+.price{color:#a27a25;font-size:18px;font-weight:bold;margin-bottom:12px}
+.add-btn{width:100%;background:#292929;color:white;border:0;padding:10px;border-radius:6px}
+.add-btn:hover{background:#a27a25}
+.choose-container{max-width:1050px;margin:30px auto}
+.choose-intro{background:white;text-align:center;padding:28px;border:2px solid var(--gold);border-radius:14px;margin-bottom:24px;line-height:1.8}
+.choose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.choose-card{background:white;padding:27px 20px;text-align:center;border-radius:12px;border-bottom:4px solid var(--gold);box-shadow:0 4px 14px #0002}
+.choose-card .symbol{font-size:34px;margin-bottom:12px}
+.choose-card h3{color:#a27a25;margin-bottom:10px}
+.choose-card p{color:#666;line-height:1.6}
+.table-container{max-width:850px;margin:25px auto;background:white;padding:20px;border-radius:12px;overflow-x:auto;box-shadow:0 4px 15px #0002}
+table{width:100%;border-collapse:collapse}
+th{background:#292929;color:var(--gold);padding:14px}
+td{padding:12px;border-bottom:1px solid #ddd;text-align:center}
+tbody tr:nth-child(even){background:#f1f1f1}
+.cart-box,.checkout-box{max-width:850px;margin:20px auto;background:white;padding:25px;border-radius:12px;box-shadow:0 4px 15px #0002}
+.cart-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid #ddd;flex-wrap:wrap}
+.qty-btn{border:0;background:#292929;color:white;padding:6px 11px;border-radius:4px}
+.remove-btn{border:0;background:#a33;color:white;padding:7px 10px;border-radius:5px}
+.total{text-align:right;font-size:21px;font-weight:bold;margin-top:20px;color:#a27a25}
+.checkout-box input,.checkout-box select,.checkout-box textarea{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #ccc;border-radius:6px}
+.checkout-box label{font-weight:bold}
+.contact-box{max-width:750px;margin:30px auto;padding:35px;background:white;border-radius:14px;text-align:center;line-height:2;border-top:4px solid var(--gold);box-shadow:0 4px 15px #0002}
+.page-controls{display:flex;justify-content:center;align-items:center;gap:14px;margin:25px 0;flex-wrap:wrap}
+.page-controls button{padding:10px 18px;border:0;border-radius:6px;background:#292929;color:white}
+footer{background:#242424;color:white;text-align:center;padding:22px;border-top:4px solid var(--gold);line-height:1.8}
+footer span{color:var(--gold)}
+@media print{header,nav,footer,.page-controls,.main-btn{display:none!important}body{background:white}.page{display:none!important;min-height:0;padding:0}#page17{display:block!important}#page17 .cart-box{box-shadow:none;border:0}}
+@media(max-width:600px){header{justify-content:center;text-align:center}.logo h1{font-size:23px}.page{padding:28px 4%}.home-content{padding:35px 18px}.home-features{grid-template-columns:1fr}.cart-row{justify-content:center;text-align:center}.product-card img{height:200px;background:transparent;padding:0}}
+#loginGate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#171717,#373737 55%,#202020)}
+#loginGate .gate-card{width:100%;max-width:480px;background:#fff;padding:32px;border-radius:16px;border-top:5px solid var(--gold);box-shadow:0 15px 40px #0006}
+#loginGate .gate-brand{text-align:center;margin-bottom:22px}
+#loginGate .gate-brand h1{color:#a27a25;font-size:30px}
+#loginGate .gate-brand p{color:#777;font-size:12px;letter-spacing:2px;margin-top:6px}
+#loginGate .gate-tabs{display:flex;gap:10px;margin:20px 0}
+#loginGate .gate-tabs button{flex:1;padding:12px;border:0;border-radius:6px;background:#ddd;font-weight:bold}
+#loginGate .gate-tabs button.active{background:var(--gold)}
+#loginGate input{width:100%;padding:13px;margin:8px 0 15px;border:1px solid #ccc;border-radius:6px}
+#loginGate label{font-weight:bold}
+#loginGate .gate-message{text-align:center;min-height:22px;margin-top:14px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<!-- LOGIN IS THE FIRST SCREEN -->
+<section id="loginGate">
+<div class="gate-card">
+<div class="gate-brand">
+<h1>REHMAN STORE</h1>
+<p>HARDWARE & SANITARY | SINCE 1968</p>
+<h2 style="margin-top:22px;color:#333">Customer Login</h2>
+<p style="letter-spacing:0;margin-top:8px">Please login or create an account to continue</p>
+</div>
+<div class="gate-tabs">
+<button type="button" id="gateLoginTab" class="active" onclick="switchGate('login')">Login</button>
+<button type="button" id="gateSignupTab" onclick="switchGate('signup')">Create Account</button>
+</div>
+<form id="gateLoginForm" onsubmit="gateLogin(event)">
+<label>Email Address</label>
+<input type="email" id="gateLoginEmail" required placeholder="Enter your email">
+<label>Password</label>
+<input type="password" id="gateLoginPassword" required placeholder="Enter your password">
+<button type="submit" class="main-btn" style="width:100%">Login & Continue</button>
+</form>
+<form id="gateSignupForm" class="hidden" onsubmit="gateSignup(event)">
+<label>Full Name</label>
+<input type="text" id="gateSignupName" required placeholder="Enter your full name">
+<label>Email Address</label>
+<input type="email" id="gateSignupEmail" required placeholder="Enter your email">
+<label>Phone Number</label>
+<input type="tel" id="gateSignupPhone" required placeholder="Enter your phone number">
+<label>Create Password</label>
+<input type="password" id="gateSignupPassword" required minlength="6" placeholder="At least 6 characters">
+<label>Confirm Password</label>
+<input type="password" id="gateSignupConfirm" required minlength="6" placeholder="Re-enter your password">
+<button type="submit" class="main-btn" style="width:100%">Create Account & Continue</button>
+</form>
+<p class="gate-message" id="gateMessage"></p>
+<p style="font-size:11px;color:#777;text-align:center;line-height:1.5;margin-top:12px">Demo login for this website project. Account details are saved in this browser.</p>
+</div>
+</section>
+
+<div id="appShell" class="hidden">
+<header>
+<div class="logo"><h1>REHMAN STORE</h1><p>HARDWARE & SANITARY | SINCE 1968</p></div>
+<div class="header-right">
+<button onclick="showPage(0)">Home</button>
+<button onclick="showPage(15)">🛒 Cart (<span id="cartCount">0</span>)</button>
+<span class="account-status" id="accountStatus">Guest</span>
+<button id="accountButton" onclick="openAccount()">Customer Login</button>
+</div>
+</header>
+<nav>
+<button onclick="showPage(0)">Home</button>
+<button onclick="showPage(1)">About</button>
+<button onclick="showPage(2)">Hardware</button>
+<button onclick="showPage(3)">Locks</button>
+<button onclick="showPage(4)">Paints</button>
+<button onclick="showPage(5)">Bathroom</button>
+<button onclick="showPage(6)">Sanitary</button>
+<button onclick="showPage(7)">Pipes</button>
+<button onclick="showPage(8)">Water</button>
+<button onclick="showPage(9)">Electrical</button>
+<button onclick="showPage(10)">Tools</button>
+<button onclick="showPage(11)">Hardware Prices</button>
+<button onclick="showPage(12)">Sanitary Prices</button>
+<button onclick="showPage(13)">Why Choose Us</button>
+<button onclick="showPage(14)">Contact</button>
+</nav>
+
+<section class="page active" id="page0">
+<div class="home-hero"><div class="home-content">
+<div class="home-tag">TRUSTED SINCE 1968</div>
+<h1>WELCOME TO<br><span>REHMAN STORE</span></h1>
+<h2>HARDWARE & SANITARY SHOP</h2>
+<p>Your trusted destination for hardware, sanitary, bathroom fittings and everyday home essentials. Quality products and helpful service in Malir Cantt, Karachi.</p>
+<p style="color:#f2d58f;font-weight:bold;margin-top:14px">🚚 Delivery Available in Karachi Only</p>
+<div class="home-actions">
+<button class="main-btn" onclick="showPage(2)">EXPLORE PRODUCTS</button>
+<button class="outline" onclick="showPage(1)">ABOUT OUR STORE</button>
+</div>
+<div class="home-features">
+<div class="home-feature"><strong>1968</strong>Established</div>
+<div class="home-feature"><strong>Quality</strong>Useful Products</div>
+<div class="home-feature"><strong>Malir Cantt</strong>Karachi</div>
+</div>
+</div></div>
+</section>
+
+<section class="page" id="page1">
+<h1 class="page-title">About Rehman Store</h1>
+<p class="page-subtitle">Know more about our shop and journey</p>
+<div class="about-container"><div class="about-box">
+<h2>Welcome to Rehman Store</h2>
+<p>Rehman Store Hardware and Sanitary Shop is located in Malir Cantt, Karachi.</p>
+<p>Since 1968, we have been serving customers with hardware, sanitary, bathroom and other essential products for homes and construction needs.</p>
+<p>Our aim is to provide quality products, reasonable prices and helpful customer service.</p>
+<div class="since">SERVING SINCE 1968</div>
+</div></div>
+</section>
+
+<section class="page" id="page2">
+<h1 class="page-title">Hardware Products</h1><p class="page-subtitle">Useful hardware items for everyday needs</p>
+<div class="product-grid" id="hardwareProducts"></div>
+</section>
+<section class="page" id="page3">
+<h1 class="page-title">Locks Collection</h1><p class="page-subtitle">Locks for doors and home security</p>
+<div class="product-grid" id="lockProducts"></div>
+</section>
+<section class="page" id="page4">
+<h1 class="page-title">Paints Collection</h1><p class="page-subtitle">Paint products for different surfaces</p>
+<div class="product-grid" id="paintProducts"></div>
+</section>
+<section class="page" id="page5">
+<h1 class="page-title">Bathroom Accessories</h1><p class="page-subtitle">Bathroom fittings and accessories</p>
+<div class="product-grid" id="bathProducts"></div>
+</section>
+<section class="page" id="page6">
+<h1 class="page-title">Sanitary Products</h1><p class="page-subtitle">Sanitary products for your home</p>
+<div class="product-grid" id="sanitaryProducts"></div>
+</section>
+<section class="page" id="page7">
+<h1 class="page-title">Pipes Collection</h1><p class="page-subtitle">Pipes and plumbing products</p>
+<div class="product-grid" id="pipeProducts"></div>
+</section>
+<section class="page" id="page8">
+<h1 class="page-title">Water Solutions</h1><p class="page-subtitle">Water storage and supply products</p>
+<div class="product-grid" id="waterProducts"></div>
+</section>
+<section class="page" id="page9">
+<h1 class="page-title">Electrical Accessories</h1><p class="page-subtitle">Essential electrical accessories</p>
+<div class="product-grid" id="electricalProducts"></div>
+</section>
+<section class="page" id="page10">
+<h1 class="page-title">Tools Collection</h1><p class="page-subtitle">Useful tools for home and workshop</p>
+<div class="product-grid" id="toolsProducts"></div>
+</section>
+
+<section class="page" id="page11">
+<h1 class="page-title">Hardware Price List</h1><p class="page-subtitle">Product names and prices</p>
+<div class="table-container"><table>
+<thead><tr><th>Sr. No.</th><th>Product Name</th><th>Price (Rs.)</th></tr></thead>
+<tbody id="hardwarePriceTable"></tbody>
+</table></div>
+</section>
+<section class="page" id="page12">
+<h1 class="page-title">Sanitary Price List</h1><p class="page-subtitle">Bathroom and sanitary product prices</p>
+<div class="table-container"><table>
+<thead><tr><th>Sr. No.</th><th>Product Name</th><th>Price (Rs.)</th></tr></thead>
+<tbody id="sanitaryPriceTable"></tbody>
+</table></div>
+</section>
+
+<section class="page" id="page13">
+<h1 class="page-title">Why Choose Rehman Store?</h1><p class="page-subtitle">Our commitment to our customers</p>
+<div class="choose-container">
+<div class="choose-intro">
+<h2>Why Customers Trust Us</h2>
+<p>Rehman Store has been serving customers since 1968. We believe in quality products, fair prices and friendly customer service.</p>
+</div>
+<div class="choose-grid">
+<div class="choose-card"><div class="symbol">🏆</div><h3>Experience Since 1968</h3><p>Serving customers with years of experience in hardware and sanitary products.</p></div>
+<div class="choose-card"><div class="symbol">⭐</div><h3>Quality Products</h3><p>A variety of useful products for home, bathroom and construction needs.</p></div>
+<div class="choose-card"><div class="symbol">💰</div><h3>Reasonable Prices</h3><p>Products displayed with clear prices to help customers make choices.</p></div>
+<div class="choose-card"><div class="symbol">🤝</div><h3>Customer Service</h3><p>We aim to guide customers and help them find suitable products.</p></div>
+<div class="choose-card"><div class="symbol">📍</div><h3>Convenient Location</h3><p>Located in Malir Cantt, Karachi, for local customers.</p></div>
+<div class="choose-card"><div class="symbol">🛒</div><h3>Product Variety</h3><p>Hardware, tools, pipes, bathroom fittings and sanitary products.</p></div>
+</div></div>
+</section>
+
+<section class="page" id="page14">
+<h1 class="page-title">Contact & Location</h1><p class="page-subtitle">Visit Rehman Store</p>
+<div class="contact-box">
+<h2>REHMAN STORE</h2><h3>Hardware & Sanitary Shop</h3>
+<p><b>Location:</b> Malir Cantt, Karachi, Pakistan</p>
+<p><b>Established:</b> 1968</p>
+<p><b>Products:</b> Hardware, Sanitary, Bathroom Fittings, Tools</p>
+<div class="since">QUALITY & TRUST SINCE 1968</div>
+</div>
+</section>
+
+<section class="page" id="page15">
+<h1 class="page-title">Shopping Cart</h1><p class="page-subtitle">Review your selected products</p>
+<div class="cart-box">
+<div id="cartItems"></div><div class="total" id="cartTotal">Total: Rs. 0</div>
+<div style="text-align:right"><button class="main-btn" onclick="showPage(16)">Proceed to Checkout</button></div>
+</div>
+</section>
+
+<section class="page" id="page16">
+<h1 class="page-title">Checkout</h1><p class="page-subtitle">Enter your order details</p>
+<div class="checkout-box">
+<form onsubmit="placeOrder(event)">
+<label>Customer Name</label><input type="text" id="customerName" required placeholder="Enter your name">
+<label>Phone Number</label><input type="tel" id="customerPhone" required placeholder="Enter phone number">
+<label>Delivery Address</label>
+<p style="font-size:13px;color:#a27a25;margin:0 0 8px;font-weight:bold">Delivery is available in Karachi only.</p>
+<textarea id="customerAddress" required minlength="10" placeholder="Enter House/Flat No, Street, Block, Area and complete Karachi address"></textarea>
+
+<label>Payment Method</label>
+<select id="paymentMethod" required onchange="toggleOnlinePayment()">
+<option value="">Select Payment Method</option>
+<option value="Cash on Delivery">Cash on Delivery</option>
+<option value="Online Payment">Online Payment</option>
+</select>
+
+<div id="onlinePaymentBox" class="hidden" style="margin:10px 0 15px">
+<label>Select Online Payment Provider</label>
+<select id="onlineProvider" onchange="showPaymentInfo()">
+<option value="">Select Payment Provider</option>
+<option value="JazzCash">JazzCash</option>
+<option value="Easypaisa">Easypaisa</option>
+<option value="HBL Debit/Credit Card">HBL Debit / Credit Card</option>
+</select>
+<div id="paymentInfo" style="display:none;background:#f5f1e7;padding:15px;border-radius:8px;margin:8px 0;line-height:1.7"></div>
+</div>
+
+<div id="checkoutSummary"></div>
+<button type="submit" class="main-btn">Confirm Order</button>
+</form></div>
+</section>
+
+<section class="page" id="page17">
+<h1 class="page-title">Order Confirmation</h1>
+<div class="cart-box" id="finalBill">Your bill will appear here.</div>
+</section>
+
+<section class="page" id="page18">
+<h1 class="page-title">Customer Account</h1>
+<p class="page-subtitle">Login or create an account to shop at Rehman Store</p>
+<div class="login-box">
+<div class="login-tabs">
+<button type="button" id="loginTab" class="active" onclick="switchAuth('login')">Login</button>
+<button type="button" id="signupTab" onclick="switchAuth('signup')">Create Account</button>
+</div>
+<form id="loginForm" onsubmit="customerLogin(event)">
+<label>Email Address</label><input type="email" id="loginEmail" required placeholder="Enter your email">
+<label>Password</label><input type="password" id="loginPassword" required placeholder="Enter your password">
+<button type="submit" class="main-btn" style="width:100%">Login</button>
+</form>
+<form id="signupForm" class="hidden" onsubmit="customerSignup(event)">
+<label>Full Name</label><input type="text" id="signupName" required placeholder="Enter your full name">
+<label>Email Address</label><input type="email" id="signupEmail" required placeholder="Enter your email">
+<label>Phone Number</label><input type="tel" id="signupPhone" required placeholder="Enter your phone number">
+<label>Create Password</label><input type="password" id="signupPassword" required minlength="6" placeholder="At least 6 characters">
+<label>Confirm Password</label><input type="password" id="signupConfirm" required minlength="6" placeholder="Re-enter your password">
+<button type="submit" class="main-btn" style="width:100%">Create Account</button>
+</form>
+<p class="login-message" id="authMessage"></p>
+<p style="font-size:12px;color:#777;line-height:1.6;margin-top:14px;text-align:center">Demo account system for this website. Account information is saved in this browser only.</p>
+</div>
+</section>
+
+<div class="page-controls">
+<button onclick="previousPage()">❮ Previous</button>
+<span id="pageNumber">Page 1 of 18</span>
+<button onclick="nextPage()">Next ❯</button>
+<button id="pauseBtn" onclick="toggleAutoPlay()">▶ Start Slideshow</button>
+</div>
+
+<footer>
+<h3><span>REHMAN STORE</span></h3>
+Hardware & Sanitary Shop<br>
+Malir Cantt, Karachi | Since 1968<br>
+© 2026 Rehman Store. All Rights Reserved.
+</footer>
+</div>
+
+<script>
+const products=[
+{id:1,name:"Hammer",price:500,image:"hammer.png",category:"hardware"},
+{id:2,name:"Screwdriver",price:250,image:"screwdriver.png",category:"hardware"},
+{id:3,name:"Tool Box",price:1800,image:"tool-box.png",category:"hardware"},
+{id:4,name:"Wrench",price:600,image:"wrench.png",category:"hardware"},
+{id:5,name:"Door Lock",price:1200,image:"door-lock.png",category:"locks"},
+{id:6,name:"Mortise Lock",price:1500,image:"mortise-lock.png",category:"locks"},
+{id:7,name:"Padlock",price:900,image:"padlock.png",category:"locks"},
+{id:8,name:"Chain Lock",price:1100,image:"chain-lock.png",category:"locks"},
+{id:9,name:"Wall Paint",price:2500,image:"wall-paint.png",category:"paint"},
+{id:10,name:"Paint Roller",price:350,image:"paint-roller.png",category:"paint"},
+{id:11,name:"Paint Bucket",price:1500,image:"paint-bucket.png",category:"paint"},
+{id:12,name:"Spray Paint",price:700,image:"spray-paint.png",category:"paint"},
+{id:13,name:"Shower Set",price:1500,image:"shower-set.png",category:"bath"},
+{id:14,name:"Shower Head",price:1000,image:"shower-head.png",category:"bath"},
+{id:15,name:"Water Tap",price:900,image:"water-tap.png",category:"bath"},
+{id:16,name:"Bathroom Tap",price:1100,image:"bathroom-tap.png",category:"bath"},
+{id:17,name:"Wash Basin",price:3500,image:"wash-basin.png",category:"sanitary"},
+{id:18,name:"Pedestal Basin",price:4000,image:"pedestal-basin.png",category:"sanitary"},
+{id:19,name:"Western Toilet",price:8000,image:"western-toilet.png",category:"sanitary"},
+{id:20,name:"Toilet Bowl",price:5000,image:"toilet-bowl.png",category:"sanitary"},
+{id:21,name:"PVC Pipe",price:400,image:"pvc-pipe.png",category:"pipes"},
+{id:22,name:"PVC Fittings",price:650,image:"pvc-fittings.png",category:"pipes"},
+{id:23,name:"Pliers",price:550,image:"pliers.png",category:"pipes"},
+{id:24,name:"Screw Set",price:450,image:"screw-set.png",category:"pipes"},
+{id:25,name:"Water Pump",price:6500,image:"water-pump.png",category:"water"},
+{id:26,name:"Water Tank",price:5000,image:"water-tank.png",category:"water"},
+{id:27,name:"Pressure Pump",price:7500,image:"pressure-pump.png",category:"water"},
+{id:28,name:"Flush Tank",price:3000,image:"flush-tank.png",category:"water"},
+{id:29,name:"Electrical Wire",price:1200,image:"electrical-wire.png",category:"electrical"},
+{id:30,name:"Switch Board",price:800,image:"switch-board.png",category:"electrical"},
+{id:31,name:"LED Bulb",price:350,image:"led-bulb.png",category:"electrical"},
+{id:32,name:"Electrical Socket",price:250,image:"socket.png",category:"electrical"},
+{id:33,name:"Paint Brush",price:300,image:"paint-brush.png",category:"tools"},
+{id:34,name:"Extension Board",price:900,image:"extension-board.png",category:"tools"},
+{id:35,name:"MCB",price:600,image:"mcb.png",category:"tools"},
+{id:36,name:"Fuse Box",price:1200,image:"fuse-box.png",category:"tools"},
+{id:37,name:"Electric Drill",price:4500,image:"electric-drill.png",category:"tools"},
+{id:38,name:"Angle Grinder",price:5500,image:"angle-grinder.png",category:"tools"},
+{id:39,name:"Digital Lock",price:4500,image:"digital-lock.png",category:"locks"},
+{id:40,name:"Bidet Spray",price:1200,image:"bidet-spray.png",category:"bath"}
+];
+
+let availableProducts=[];
+
+function checkProductImages(){
+const checks=products.map(product=>new Promise(resolve=>{
+const image=new Image();
+image.onload=()=>resolve(product);
+image.onerror=()=>resolve(null);
+image.src="./images/"+product.image;
+}));
+
+Promise.all(checks).then(results=>{
+availableProducts=results.filter(product=>product!==null);
+cart=cart.filter(item=>availableProducts.some(product=>product.id===item.id));
+saveCart();
+
+renderProducts("hardware","hardwareProducts");
+renderProducts("locks","lockProducts");
+renderProducts("paint","paintProducts");
+renderProducts("bath","bathProducts");
+renderProducts("sanitary","sanitaryProducts");
+renderProducts("pipes","pipeProducts");
+renderProducts("water","waterProducts");
+renderProducts("electrical","electricalProducts");
+renderProducts("tools","toolsProducts");
+
+renderPriceTable(["hardware","locks","paint","pipes","tools"],"hardwarePriceTable");
+renderPriceTable(["bath","sanitary","water"],"sanitaryPriceTable");
+updateCartCount();
+});
+}
+
+function renderProducts(category,id){
+const items=availableProducts.filter(p=>p.category===category);
+const container=document.getElementById(id);
+
+if(items.length===0){
+container.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:25px">No products with available pictures in this category.</p>';
+return;
+}
+
+container.innerHTML=items.map(p=>`
+<div class="product-card">
+<img src="./images/${p.image}" alt="${p.name}">
+<h3>${p.name}</h3>
+<div class="price">Rs. ${p.price.toLocaleString("en-PK")}</div>
+<button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+</div>`).join("");
+}
+
+function renderPriceTable(categories,id){
+const items=availableProducts.filter(p=>categories.includes(p.category));
+const table=document.getElementById(id);
+
+if(items.length===0){
+table.innerHTML='<tr><td colspan="3">No products with available pictures.</td></tr>';
+return;
+}
+
+table.innerHTML=items.map((p,i)=>`
+<tr><td>${i+1}</td><td>${p.name}</td><td>${p.price.toLocaleString("en-PK")}</td></tr>`).join("");
+}
+
+let currentPage=0;
+const totalPages=19;
+
+function showPage(n){
+if(n<0||n>=totalPages)return;
+
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById("page"+n).classList.add("active");
+currentPage=n;
+
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(n<=14)document.querySelectorAll("nav button")[n].classList.add("active");
+
+document.getElementById("pageNumber").textContent=`Page ${n+1} of ${totalPages}`;
+
+if(n===15)renderCart();
+if(n===16)renderCheckoutSummary();
+
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function nextPage(){showPage((currentPage+1)%totalPages)}
+function previousPage(){showPage((currentPage-1+totalPages)%totalPages)}
+
+let cart=JSON.parse(localStorage.getItem("rehmanCart"))||[];
+
+function saveCart(){
+localStorage.setItem("rehmanCart",JSON.stringify(cart));
+updateCartCount();
+}
+
+function updateCartCount(){
+document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.quantity,0);
+}
+
+function addToCart(id){
+if(!currentCustomer){
+alert("Please login or create a customer account before shopping.");
+showPage(18);
+return;
+}
+
+let p=availableProducts.find(x=>x.id===id);
+if(!p){alert("This product image is unavailable.");return}
+
+let item=cart.find(x=>x.id===id);
+
+if(item){item.quantity++}
+else{cart.push({id:p.id,name:p.name,price:p.price,quantity:1})}
+
+saveCart();
+alert(p.name+" added to cart!");
+}
+
+function changeQuantity(id,amount){
+let item=cart.find(x=>x.id===id);
+if(!item)return;
+
+item.quantity+=amount;
+if(item.quantity<=0)cart=cart.filter(x=>x.id!==id);
+
+saveCart();
+renderCart();
+}
+
+function removeFromCart(id){
+cart=cart.filter(x=>x.id!==id);
+saveCart();
+renderCart();
+}
+
+function getCartTotal(){
+return cart.reduce((s,i)=>s+i.price*i.quantity,0);
+}
+
+function renderCart(){
+let box=document.getElementById("cartItems");
+
+if(!cart.length){
+box.innerHTML='<h3 style="text-align:center;padding:25px">Your cart is empty.</h3>';
+document.getElementById("cartTotal").textContent="Total: Rs. 0";
+return;
+}
+
+box.innerHTML=cart.map(i=>`
+<div class="cart-row">
+<div><b>${i.name}</b><br>Rs. ${i.price.toLocaleString("en-PK")} each</div>
+<div>
+<button class="qty-btn" onclick="changeQuantity(${i.id},-1)">−</button>
+<b>${i.quantity}</b>
+<button class="qty-btn" onclick="changeQuantity(${i.id},1)">+</button>
+</div>
+<b>Rs. ${(i.price*i.quantity).toLocaleString("en-PK")}</b>
+<button class="remove-btn" onclick="removeFromCart(${i.id})">Remove</button>
+</div>`).join("");
+
+document.getElementById("cartTotal").textContent="Total: Rs. "+getCartTotal().toLocaleString("en-PK");
+}
+
+function getDeliveryCharge(subtotal){
+return subtotal >= 1000 ? 0 : 200;
+}
+
+function renderCheckoutSummary(){
+const subtotal=getCartTotal();
+const delivery=getDeliveryCharge(subtotal);
+const total=subtotal+delivery;
+
+document.getElementById("checkoutSummary").innerHTML=cart.length?`
+<div style="background:#f1f1f1;padding:15px;border-radius:8px;margin:15px 0">
+<h3>Order Summary</h3>
+<p>Products Total: Rs. ${subtotal.toLocaleString("en-PK")}</p>
+<p>Delivery Charges: ${delivery===0 ? "FREE" : "Rs. "+delivery.toLocaleString("en-PK")}</p>
+<hr>
+<h3>Grand Total: Rs. ${total.toLocaleString("en-PK")}</h3>
+<p style="font-size:13px;color:#666;margin-top:8px">Orders of Rs. 1,000 or more get free delivery. Orders below Rs. 1,000 have Rs. 200 delivery charges.</p>
+</div>`:"<p>Your cart is empty. Add products before checkout.</p>";
+}
+
+function toggleOnlinePayment(){
+const payment=document.getElementById("paymentMethod").value;
+const box=document.getElementById("onlinePaymentBox");
+const provider=document.getElementById("onlineProvider");
+const info=document.getElementById("paymentInfo");
+
+const online=payment==="Online Payment";
+
+box.classList.toggle("hidden",!online);
+provider.required=online;
+
+if(!online){
+provider.value="";
+info.style.display="none";
+info.innerHTML="";
+}
+}
+
+function showPaymentInfo(){
+const provider=document.getElementById("onlineProvider").value;
+const info=document.getElementById("paymentInfo");
+
+if(!provider){
+info.style.display="none";
+info.innerHTML="";
+return;
+}
+
+let heading="";
+let description="";
+
+if(provider==="JazzCash"){
+heading="JazzCash";
+description="JazzCash selected. Once the official JazzCash payment gateway is connected, the customer will be redirected to its secure payment page.";
+}
+else if(provider==="Easypaisa"){
+heading="Easypaisa";
+description="Easypaisa selected. Once the official Easypaisa payment gateway is connected, the customer will be redirected to its secure payment page.";
+}
+else if(provider==="HBL Debit/Credit Card"){
+heading="HBL Debit / Credit Card";
+description="HBL card payment selected. Once HBL's official payment gateway is connected, the customer will be redirected to its secure payment page.";
+}
+
+info.innerHTML=`
+<h3>${heading}</h3>
+<p>${description}</p>
+<p style="color:#a27a25;font-weight:bold;margin-top:8px">
+Demo selection only: payment is not collected on this website yet.
+Never enter or share your card number, CVV, PIN or OTP here.
+</p>`;
+
+info.style.display="block";
+}
+
+function placeOrder(event){
+event.preventDefault();
+
+if(!currentCustomer){
+alert("Please login before placing an order.");
+showPage(18);
+return;
+}
+
+if(!cart.length){
+alert("Your cart is empty.");
+showPage(2);
+return;
+}
+
+let name=document.getElementById("customerName").value.trim();
+let phone=document.getElementById("customerPhone").value.trim();
+let address=document.getElementById("customerAddress").value.trim();
+let payment=document.getElementById("paymentMethod").value;
+
+let provider=payment==="Online Payment"
+?document.getElementById("onlineProvider").value
+:"";
+
+if(!name||!phone||address.length<10||!payment){
+alert("Please complete all required fields.");
+return;
+}
+
+if(payment==="Online Payment"&&!provider){
+alert("Please select JazzCash, Easypaisa or HBL Card.");
+return;
+}
+
+let items=[...cart];
+let subtotal=getCartTotal();
+let delivery=getDeliveryCharge(subtotal);
+let total=subtotal+delivery;
+
+let rows=items.map(i=>`
+<tr>
+<td>${i.name}</td>
+<td>${i.quantity}</td>
+<td>Rs. ${(i.price*i.quantity).toLocaleString("en-PK")}</td>
+</tr>`).join("");
+
+document.getElementById("finalBill").innerHTML=`
+<div style="text-align:center;margin-bottom:20px">
+<h2 style="color:#a27a25">REHMAN STORE</h2>
+<h3>Order Confirmed!</h3>
+<p>Thank you for choosing our shop.</p>
+</div>
+
+<p><b>Customer:</b> ${name}</p>
+<p><b>Phone:</b> ${phone}</p>
+<p><b>Address:</b> ${address}</p>
+<p><b>Payment:</b> ${payment}</p>
+
+${provider?`
+<p><b>Selected Provider:</b> ${provider}</p>
+<p style="color:#a27a25;font-size:13px">
+Payment gateway integration is pending; this is a demo order selection.
+</p>`:""}
+
+<br>
+<table>
+<thead><tr><th>Product</th><th>Qty</th><th>Amount</th></tr></thead>
+<tbody>${rows}</tbody>
+</table>
+<br>
+
+<p>Subtotal: Rs. ${subtotal.toLocaleString("en-PK")}</p>
+<p>Delivery Charges: ${delivery===0 ? "FREE" : "Rs. "+delivery.toLocaleString("en-PK")}</p>
+
+<h2 style="text-align:right;color:#a27a25">
+Grand Total: Rs. ${total.toLocaleString("en-PK")}
+</h2>
+
+<p style="text-align:center;margin-top:25px">
+Rehman Store | Malir Cantt, Karachi | Since 1968
+</p>
+
+<div style="text-align:center">
+<button class="main-btn" onclick="window.print()">Print Bill</button>
+</div>`;
+
+let orders=JSON.parse(localStorage.getItem("rehmanOrders"))||[];
+
+orders.push({
+customer:name,
+phone:phone,
+address:address,
+payment:payment,
+provider:provider,
+items:items,
+subtotal:subtotal,
+delivery:delivery,
+total:total,
+date:new Date().toLocaleString()
+});
+
+localStorage.setItem("rehmanOrders",JSON.stringify(orders));
+
+cart=[];
+saveCart();
+
+document.getElementById("customerName").value="";
+document.getElementById("customerPhone").value="";
+document.getElementById("customerAddress").value="";
+document.getElementById("paymentMethod").value="";
+
+toggleOnlinePayment();
+showPage(17);
+}
+
+/* LOGIN FIRST */
+function switchGate(mode){
+const loginForm=document.getElementById("gateLoginForm");
+const signupForm=document.getElementById("gateSignupForm");
+
+loginForm.classList.toggle("hidden",mode!=="login");
+signupForm.classList.toggle("hidden",mode!=="signup");
+
+document.getElementById("gateLoginTab").classList.toggle("active",mode==="login");
+document.getElementById("gateSignupTab").classList.toggle("active",mode==="signup");
+
+document.getElementById("gateMessage").textContent="";
+}
+
+function enterStore(customer){
+currentCustomer={name:customer.name,email:customer.email,phone:customer.phone};
+
+localStorage.setItem("rehmanCurrentCustomer",JSON.stringify(currentCustomer));
+
+document.getElementById("loginGate").classList.add("hidden");
+document.getElementById("appShell").classList.remove("hidden");
+
+updateAccountUI();
+showPage(0);
+}
+
+function gateLogin(event){
+event.preventDefault();
+
+const email=document.getElementById("gateLoginEmail").value.trim().toLowerCase();
+const password=document.getElementById("gateLoginPassword").value;
+
+const customer=getCustomers().find(c=>c.email===email&&c.password===password);
+const message=document.getElementById("gateMessage");
+
+if(!customer){
+message.style.color="#b00020";
+message.textContent="Incorrect email or password. Please try again or create an account.";
+return;
+}
+
+document.getElementById("gateLoginForm").reset();
+enterStore(customer);
+}
+
+function gateSignup(event){
+event.preventDefault();
+
+const name=document.getElementById("gateSignupName").value.trim();
+const email=document.getElementById("gateSignupEmail").value.trim().toLowerCase();
+const phone=document.getElementById("gateSignupPhone").value.trim();
+const password=document.getElementById("gateSignupPassword").value;
+const confirm=document.getElementById("gateSignupConfirm").value;
+const message=document.getElementById("gateMessage");
+
+if(password!==confirm){
+message.style.color="#b00020";
+message.textContent="Passwords do not match.";
+return;
+}
+
+const customers=getCustomers();
+
+if(customers.some(c=>c.email===email)){
+message.style.color="#b00020";
+message.textContent="This email already has an account. Please login.";
+return;
+}
+
+const customer={name,email,phone,password};
+customers.push(customer);
+saveCustomers(customers);
+
+document.getElementById("gateSignupForm").reset();
+enterStore(customer);
+}
+
+/* CUSTOMER ACCOUNT */
+let currentCustomer=null;
+
+localStorage.removeItem("rehmanCurrentCustomer");
+
+function getCustomers(){
+return JSON.parse(localStorage.getItem("rehmanCustomers"))||[];
+}
+
+function saveCustomers(customers){
+localStorage.setItem("rehmanCustomers",JSON.stringify(customers));
+}
+
+function openAccount(){
+showPage(18);
+
+if(currentCustomer){
+document.getElementById("authMessage").textContent="You are logged in as "+currentCustomer.name+".";
+document.getElementById("authMessage").style.color="#287a35";
+switchAuth("login");
+}else{
+document.getElementById("authMessage").textContent="";
+switchAuth("login");
+}
+}
+
+function switchAuth(mode){
+const loginForm=document.getElementById("loginForm");
+const signupForm=document.getElementById("signupForm");
+const loginTab=document.getElementById("loginTab");
+const signupTab=document.getElementById("signupTab");
+
+loginForm.classList.toggle("hidden",mode!=="login");
+signupForm.classList.toggle("hidden",mode!=="signup");
+
+loginTab.classList.toggle("active",mode==="login");
+signupTab.classList.toggle("active",mode==="signup");
+
+document.getElementById("authMessage").textContent="";
+}
+
+function customerSignup(event){
+event.preventDefault();
+
+const name=document.getElementById("signupName").value.trim();
+const email=document.getElementById("signupEmail").value.trim().toLowerCase();
+const phone=document.getElementById("signupPhone").value.trim();
+const password=document.getElementById("signupPassword").value;
+const confirm=document.getElementById("signupConfirm").value;
+const message=document.getElementById("authMessage");
+
+if(password!==confirm){
+message.style.color="#b00020";
+message.textContent="Passwords do not match.";
+return;
+}
+
+const customers=getCustomers();
+
+if(customers.some(customer=>customer.email===email)){
+message.style.color="#b00020";
+message.textContent="This email already has an account. Please login.";
+return;
+}
+
+customers.push({name,email,phone,password});
+saveCustomers(customers);
+
+currentCustomer={name,email,phone};
+
+localStorage.setItem("rehmanCurrentCustomer",JSON.stringify(currentCustomer));
+updateAccountUI();
+
+document.getElementById("signupForm").reset();
+
+message.style.color="#287a35";
+message.textContent="Account created successfully. You are now logged in!";
+}
+
+function customerLogin(event){
+event.preventDefault();
+
+const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+const password=document.getElementById("loginPassword").value;
+
+const customer=getCustomers().find(item=>item.email===email&&item.password===password);
+const message=document.getElementById("authMessage");
+
+if(!customer){
+message.style.color="#b00020";
+message.textContent="Incorrect email or password. Please try again.";
+return;
+}
+
+currentCustomer={name:customer.name,email:customer.email,phone:customer.phone};
+
+localStorage.setItem("rehmanCurrentCustomer",JSON.stringify(currentCustomer));
+updateAccountUI();
+
+document.getElementById("loginForm").reset();
+
+message.style.color="#287a35";
+message.textContent="Welcome back, "+customer.name+"! You are logged in.";
+}
+
+function customerLogout(){
+currentCustomer=null;
+
+localStorage.removeItem("rehmanCurrentCustomer");
+
+document.getElementById("appShell").classList.add("hidden");
+document.getElementById("loginGate").classList.remove("hidden");
+
+document.getElementById("gateMessage").style.color="#287a35";
+document.getElementById("gateMessage").textContent="You have logged out. Please login to continue.";
+
+switchGate("login");
+}
+
+function updateAccountUI(){
+const status=document.getElementById("accountStatus");
+const button=document.getElementById("accountButton");
+
+if(currentCustomer){
+status.textContent="Hi, "+currentCustomer.name;
+button.textContent="Logout";
+button.onclick=customerLogout;
+}else{
+status.textContent="Guest";
+button.textContent="Customer Login";
+button.onclick=openAccount;
+}
+}
+
+let autoPlayTimer=null;
+let autoPlayRunning=false;
+
+function toggleAutoPlay(){
+const button=document.getElementById("pauseBtn");
+
+if(autoPlayRunning){
+clearInterval(autoPlayTimer);
+autoPlayTimer=null;
+autoPlayRunning=false;
+button.textContent="▶ Resume Slideshow";
+return;
+}
+
+autoPlayRunning=true;
+button.textContent="⏸ Pause Slideshow";
+
+autoPlayTimer=setInterval(()=>{
+if(currentPage>=0&&currentPage<=14){
+showPage(currentPage===14?0:currentPage+1);
+}else{
+clearInterval(autoPlayTimer);
+autoPlayTimer=null;
+autoPlayRunning=false;
+button.textContent="▶ Start Slideshow";
+}
+},5000);
+}
+
+updateCartCount();
+updateAccountUI();
+checkProductImages();
+switchGate("login");
+</script>
+</body>
+</html>
